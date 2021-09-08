@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $home_page_id = setting_item('home_page_id');
         $home_hotel_id = setting_item('home_hotel_id');
         if($home_hotel_id && $row = Hotel::where("id",$home_hotel_id)->where("status","publish")->first())

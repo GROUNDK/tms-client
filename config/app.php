@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost:8080'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -184,10 +184,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         Plugins\ServiceProvider::class,
         Custom\ServiceProvider::class,
-        App\Providers\AdminRouteServiceProvider::class,
+        // App\Providers\AdminRouteServiceProvider::class,
        Propaganistas\LaravelPhone\PhoneServiceProvider::class,
 
-
+       Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
     ],
 
@@ -239,8 +239,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
+
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ],
 
     'debug_blacklist' => [

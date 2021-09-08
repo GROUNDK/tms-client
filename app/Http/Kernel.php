@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\RedirectForMultiLanguage::class,
-            \App\Http\Middleware\HideDebugbar::class,
+            // \App\Http\Middleware\HideDebugbar::class,
             SetCurrentCurrency::class,
             SetLanguageForAdmin::class,
         ],

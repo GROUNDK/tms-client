@@ -2,12 +2,13 @@
 namespace Modules\Dashboard\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Modules\AdminController;
 use Modules\Booking\Models\Booking;
 
 class DashboardController extends AdminController
 {
-    public function index()
+    public function index(Request $request,Response $res)
     {
         $f = strtotime('monday this week');
         $data = [
@@ -15,7 +16,13 @@ class DashboardController extends AdminController
             'top_cards'          => Booking::getTopCardsReport(),
             'earning_chart_data' => Booking::getDashboardChartData($f, time())
         ];
-        return view('Dashboard::index', $data);
+
+
+        if ($request->isMethod('post')) {
+            return view('Dashboard::index', $data);
+        }else{
+            return response()->json($data, 200);
+        }
     }
 
     public function reloadChart(Request $request)
