@@ -17,10 +17,10 @@ class DashboardController extends AdminController
             'earning_chart_data' => Booking::getDashboardChartData($f, time())
         ];
 
-
-        if ($request->isMethod('post')) {
+        if ($request->path() === 'admin') {
             return view('Dashboard::index', $data);
         }else{
+            // return view('Dashboard::index', $data);
             return response()->json($data, 200);
         }
     }
