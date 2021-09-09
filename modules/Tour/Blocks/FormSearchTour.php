@@ -84,20 +84,26 @@ class FormSearchTour extends BaseBlock
 
     public function content($model = [])
     {
-        $limit_location = 15;
+        $limit_location = 100;
         if( empty(setting_item("tour_location_search_style")) or setting_item("tour_location_search_style") == "normal" ){
             $limit_location = 1000;
         }
         $data = [
-            'tour_location' => Location::where("status","publish")->limit($limit_location)->with(['translations'])->get()->toTree(),
+            'tour_location' => Location::from('bravo_locations as bl')->
+            join('bravo_tours as bt','bl.id','=','bt.location_id')->where("bl.status","publish")->withTrashed()->groupBy('bl.name')->limit($limit_location)->with(['translations'])
+            ->select( 'bl.id','bl.name' )->
+            get()->toTree(),
             'bg_image_url'  => '',
         ];
+        // echo json_encode($data['tour_location']);exit;
         $data = array_merge($model, $data);
         if (!empty($model['bg_image'])) {
             $data['bg_image_url'] = FileHelper::url($model['bg_image'], 'full');
         }
         $data['style'] = $model['style'] ?? "";
         $data['list_slider'] = $model['list_slider'] ?? "";
+
+
         return view('Tour::frontend.blocks.form-search-tour.index', $data);
     }
 
