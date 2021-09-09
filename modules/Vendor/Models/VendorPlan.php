@@ -33,7 +33,7 @@ class VendorPlan extends BaseModel
 
             $query->where('name', 'like', "%" . $q . "%");
         }
-        $a = $query->withTrashed()->get();
+        $a = $query->get();
         return $a;
     }
     public function meta(){

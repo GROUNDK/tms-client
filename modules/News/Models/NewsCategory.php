@@ -39,7 +39,7 @@ class NewsCategory extends BaseModel
 
             $query->where('title', 'name', "%" . $q . "%");
         }
-        $a = $query->withTrashed()->get();
+        $a = $query->get();
         return $a;
     }
 

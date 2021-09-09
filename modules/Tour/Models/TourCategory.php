@@ -31,7 +31,7 @@ class TourCategory extends BaseModel
         if (strlen($q)) {
             $query->where('name', 'like', "%" . $q . "%");
         }
-        $a = $query->withTrashed()->get();
+        $a = $query->get();
         return $a;
     }
     public function getDetailUrl(){

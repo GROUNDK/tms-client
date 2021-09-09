@@ -702,7 +702,7 @@ class Tour extends Bookable
 
             $query->where('title', 'like', "%" . $q . "%");
         }
-        $a = $query->withTrashed()->get();
+        $a = $query->get();
         return $a;
     }
 
