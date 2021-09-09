@@ -58,6 +58,7 @@ class Menu extends BaseModel
                 $i++;
             }
         }
+
         return $res;
     }
 

@@ -32,7 +32,7 @@ class LocationCategory extends BaseModel
         if (strlen($q)) {
             $query->where('name', 'like', "%" . $q . "%");
         }
-        $a = $query->limit(10)->get();
+        $a = $query->withTrashed()->get();
         return $a;
     }
     public function getDetailUrl(){

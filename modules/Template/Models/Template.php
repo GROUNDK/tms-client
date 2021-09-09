@@ -29,7 +29,7 @@ class Template extends BaseModel
         if ($q) {
             $query->where('title', 'like', "%" . $q . "%");
         }
-        $a = $query->limit(10)->get();
+        $a = $query->withTrashed()->get();
         return $a;
     }
 

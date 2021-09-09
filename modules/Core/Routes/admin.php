@@ -32,4 +32,5 @@ Route::group(['prefix' => 'menu'], function () {
     Route::post('/getTypes', 'MenuController@getTypes')->name('core.admin.menu.getTypes');
 
     Route::post('/bulkEdit','MenuController@bulkEdit')->name('core.admin.menu.bulkEdit');
+    Route::post('/searchTypeItems','MenuController@searchTypeItems')->name('core.admin.menu.searchTypeItems');
 });

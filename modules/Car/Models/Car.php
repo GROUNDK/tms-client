@@ -570,7 +570,7 @@ class Car extends Bookable
 
             $query->where('title', 'like', "%" . $q . "%");
         }
-        $a = $query->limit(10)->get();
+        $a = $query->withTrashed()->get();
         return $a;
     }
 
@@ -911,7 +911,7 @@ class Car extends Bookable
         if (!empty($price_range = $request->query('price_range'))) {
             $pri_from = explode(";", $price_range)[0];
             $pri_to = explode(";", $price_range)[1];
-            $raw_sql_min_max = "( (IFNULL(bravo_cars.sale_price,0) > 0 and bravo_cars.sale_price >= ? ) OR (IFNULL(bravo_cars.sale_price,0) <= 0 and bravo_cars.price >= ? ) ) 
+            $raw_sql_min_max = "( (IFNULL(bravo_cars.sale_price,0) > 0 and bravo_cars.sale_price >= ? ) OR (IFNULL(bravo_cars.sale_price,0) <= 0 and bravo_cars.price >= ? ) )
                             AND ( (IFNULL(bravo_cars.sale_price,0) > 0 and bravo_cars.sale_price <= ? ) OR (IFNULL(bravo_cars.sale_price,0) <= 0 and bravo_cars.price <= ? ) )";
             $model_car->WhereRaw($raw_sql_min_max,[$pri_from,$pri_from,$pri_to,$pri_to]);
         }

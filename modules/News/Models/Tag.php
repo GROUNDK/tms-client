@@ -29,7 +29,7 @@ class Tag extends BaseModel
         if ($q) {
             $query->where('name', 'like', "%" . $q . "%");
         }
-        $a = $query->limit(10)->get();
+        $a = $query->withTrashed()->get();
         return $a;
     }
 

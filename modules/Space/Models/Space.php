@@ -610,7 +610,7 @@ class Space extends Bookable
 
             $query->where('title', 'like', "%" . $q . "%");
         }
-        $a = $query->limit(10)->get();
+        $a = $query->withTrashed()->get();
         return $a;
     }
 
@@ -948,7 +948,7 @@ class Space extends Bookable
         if (!empty($price_range = $request->query('price_range'))) {
             $pri_from = explode(";", $price_range)[0];
             $pri_to = explode(";", $price_range)[1];
-            $raw_sql_min_max = "( (IFNULL(bravo_spaces.sale_price,0) > 0 and bravo_spaces.sale_price >= ? ) OR (IFNULL(bravo_spaces.sale_price,0) <= 0 and bravo_spaces.price >= ? ) ) 
+            $raw_sql_min_max = "( (IFNULL(bravo_spaces.sale_price,0) > 0 and bravo_spaces.sale_price >= ? ) OR (IFNULL(bravo_spaces.sale_price,0) <= 0 and bravo_spaces.price >= ? ) )
                             AND ( (IFNULL(bravo_spaces.sale_price,0) > 0 and bravo_spaces.sale_price <= ? ) OR (IFNULL(bravo_spaces.sale_price,0) <= 0 and bravo_spaces.price <= ? ) )";
             $model_space->WhereRaw($raw_sql_min_max,[$pri_from,$pri_from,$pri_to,$pri_to]);
         }

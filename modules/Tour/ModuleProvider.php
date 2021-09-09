@@ -125,7 +125,7 @@ class ModuleProvider extends ModuleServiceProvider
 
     public static function getMenuBuilderTypes()
     {
-        if(!Tour::isEnable()) return [];
+        // if(!Tour::isEnable()) return [];
 
         return [
             [

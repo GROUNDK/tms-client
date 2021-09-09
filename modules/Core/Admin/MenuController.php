@@ -67,6 +67,7 @@ class MenuController extends AdminController
         if (empty($row)) {
             abort(404);
         }
+
         $setting = json_decode(setting_item('menu_locations'), true);
         $current_menu_locations = [];
         if (!empty($setting) and is_array($setting)) {
@@ -225,6 +226,7 @@ class MenuController extends AdminController
                 }
             }
         }
+
         return $this->sendSuccess(['data' => $menuModels]);
     }
 
