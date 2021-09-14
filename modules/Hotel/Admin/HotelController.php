@@ -389,7 +389,6 @@ class HotelController extends AdminController
             $query->where('title', 'like', '%' . $q . '%');
         }
         $res = $query->orderBy('id', 'desc')->limit(20)->get();
-
         $first['id'] = 0;
         $first['text'] = "-- Select field type --";
         $res[] =$first;
