@@ -58,6 +58,7 @@ class HomeController extends Controller
         {
             $this->setActiveMenu($page);
             $translation = $page->translateOrOrigin(app()->getLocale());
+            //print_r($page);
             $seo_meta = $page->getSeoMetaWithTranslation(app()->getLocale(), $translation);
             $seo_meta['full_url'] = url("/");
             $seo_meta['is_homepage'] = true;
@@ -66,6 +67,8 @@ class HomeController extends Controller
                 "seo_meta"=> $seo_meta,
                 'translation'=>$translation
             ];
+            //error_log("data:".$data);
+            //print_r($data);
             return view('Page::frontend.detail',$data);
         }
         $model_News = News::where("status", "publish");

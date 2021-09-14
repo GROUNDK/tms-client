@@ -17,7 +17,7 @@ class SetLanguageForApi
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        \Debugbar::disable();
+        //\Debugbar::disable();
 
         if($locale = $request->get('lang'))
         {
